@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Login from './Components/Login/Login.js';
+import Panel from './Components/Panel/Panel.js';
 import './App.css';
 
-function App() {
+const App = () => {
+  let [username, setUsername] = useState(null);
+  const onLogin = (e) =>{
+    setUsername(e);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    username === null ?
+    <div>
+      <Login onLogin = {onLogin}/>
+    </div>
+    :
+    <div>
+    <h1 style = {{textAlign:'center'}}> Logged in as {username} </h1>
+    <Panel username = {username}/> 
+
     </div>
   );
 }
